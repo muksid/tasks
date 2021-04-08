@@ -1,7 +1,9 @@
 <div class="clearfix"></div><br />
 
 <div class="container">
-    <a href="insert.php" class="btn btn-large btn-outline-primary"><i class="bi bi-plus-circle-fill"></i> Создать задачу</a>
+    <?php if ($_SESSION['username'] != 'admin') { ?>
+        <a href="insert.php" class="btn btn-large btn-outline-primary"><i class="bi bi-plus-circle-fill"></i> Создать задачу</a>
+    <?php } ?>
 </div>
 
 <div class="clearfix"></div><br />
