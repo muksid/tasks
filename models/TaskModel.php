@@ -77,6 +77,7 @@ class TaskModel
         {
             $this->connecDB();
             $status = $this->get($objData->id, null, null);
+            $status = $status['status'];
             if (!empty($_SESSION['username'])){
                 $status = $objData->status;
             }
