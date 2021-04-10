@@ -76,10 +76,22 @@ class TaskModel
         try
         {
             $this->connecDB();
-            $status = $this->get($objData->id, null, null);
-            $status = $status['status'];
+            $get_task = $this->get($objData->id, null, null);
+            $status = $get_task['status'];
+            $tt = $get_task['task_text'];
             if (!empty($_SESSION['username'])){
                 $status = $objData->status;
+                
+                if($tt != trim($objData->task_text)){                   
+                $status = 1;
+                } elseif($status == 2) {
+                $status = $objData->status;
+                } elseif($status != 2){
+                    $status = 0;
+                }
+                else {
+                    $status = $get_task['status'];
+                }
             }
             $sql = "UPDATE tasks SET user_name=:un, email=:em, task_text=:tt, status=:st WHERE id=:id";
             $stmt=$this->db->prepare($sql);
@@ -138,7 +150,9 @@ class TaskModel
                     <td>
                         <?php
                         if ($row['status'] == 0){
-                            echo '<span class="badge badge-pill badge-primary">Новый</span>';
+                            echo '<span class="badge badge-pill badge-danger">Новый</span>';
+                        } elseif($row['status'] == 1) {
+                            echo '<span class="badge badge-pill badge-primary">Отредактировал</span>';
                         } else {
                             echo '<span class="badge badge-pill badge-success">Выполнено</span>';
                         }

@@ -49,24 +49,15 @@ require_once 'header.php';
                 </td>
             </tr>
 
-            <?php if ($_SESSION['username'] == 'admin') {
-                $r0 = '';
-                $r1 = 'checked';
-                if ($task->status == 0){
-                    $r0 = 'checked';
-                    $r1 = '';
-                }
+            <?php if ($_SESSION['username'] == 'admin') {                
+                $ch = ($task->status == 2) ? "checked" : "";
                 ?>
                 <tr>
                     <td><label>Статус</label></td>
                     <td>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" value="0" name="status" <?php echo $r0; ?>>
-                            <label class="form-check-label" for="inlineRadio1">Новый</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" value="1" name="status" <?php echo $r1; ?>>
-                            <label class="form-check-label" for="inlineRadio2">Выполнено</label>
+                        <div class="form-check">
+                            <input name="status" value="2" type="checkbox" class="form-check-input" <?php echo $ch; ?>>
+                            <label class="form-check-label">Выполнено</label>
                         </div>
                     </td>
                 </tr>

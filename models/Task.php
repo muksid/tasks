@@ -8,6 +8,7 @@ class Task
 	public $user_name;
 	public $email;
 	public $task_text;
+	public $status;
     // message string
     public $id_msg;
     public $user_name_msg;
@@ -17,7 +18,7 @@ class Task
 	function __construct()
 	{
 		# code...
-        $id=0;$user_name=$email=$task_text="";
+        $id=0;$user_name=$email=$task_text=$status	="";
         $id_msg=$user_name_msg=$email_msg=$task_text_msg="";
 	}
 }
